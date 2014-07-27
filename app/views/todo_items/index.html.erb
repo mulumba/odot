@@ -6,7 +6,9 @@
     <tr>
       <th width="65%">Item</th>
       <th width="25%">Status</th>
+      <% if user_signed_in? %>
       <th width="10%">Manage</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -17,17 +19,26 @@
         <% if todo_item.completed? %>
           <%= todo_item.completed_at %>
         <% else %>
-          <%= link_to "Mark Complete", complete_todo_list_todo_item_path(todo_item), method: :patch %>
+          <% if user_signed_in? %>
+            <%= link_to "Mark Complete", complete_todo_list_todo_item_path(todo_item), method: :patch %>
+          <% end %>
         <% end %>
       </td>
+      <% if user_signed_in? %>
       <td>
         <%= link_to "Edit", edit_todo_list_todo_item_path(todo_item) %>
         <%= link_to "Delete", todo_list_todo_item_path(todo_item), method: :delete, data: { confirm: "Are you sure?" } %>
       </td>
+      <% end %>
   <% end %>
   </tbody>
 </table>
 
+<% if user_signed_in? %>
 <p>
   <%= link_to "New Todo Item", new_todo_list_todo_item_path %>
 </p>
+<% else %>
+  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+<% end %>
