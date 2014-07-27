@@ -16,10 +16,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-div.alert {
-  border: 2px solid #aaa;
-  padding: 10px;
-}
+.navbar-default { background-color: #f8f8f8; border-color: #e7e7e7; }
+
+.navbar-inverse .navbar-nav > li > a { color: rgba(33, 125, 187, 0.95) }
+
+div.alert { border: 2px solid #aaa; padding: 10px; }
 
 div.flash.success { border: 2px solid green; color: green; }
 div.flash.error   { border: 2px solid red; color: red; }
